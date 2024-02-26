@@ -26,6 +26,7 @@ class SplashScreen extends StatelessWidget {
                 child: Text(
                   '"Beyond the headlines, discover the stories shaping our world."',
                   softWrap: true,
+                  overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
