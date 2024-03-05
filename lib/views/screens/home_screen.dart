@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/controller/news.dart';
 import 'package:newsapp/controller/provider.dart';
+import 'package:newsapp/views/screens/settings.dart';
 import 'package:newsapp/views/screens/topheadlines_screen.dart';
 import 'package:newsapp/views/widgets/carosel_slider.dart';
 import 'package:newsapp/views/widgets/news_category.dart';
 import 'package:newsapp/views/widgets/news_list.dart';
-import 'package:newsapp/views/widgets/theme_switch.dart';
 import 'package:newsapp/views/widgets/title.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -64,19 +64,14 @@ class _HomeState extends ConsumerState<Home> {
               color: Colors.grey.withOpacity(0.5),
             ),
             ListTile(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'Theme :',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  const ThemeSwitch()
-                ],
-              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SettingsScreen(),
+                    ));
+              },
+              title: const Text('Settings'),
             )
           ],
         ),
@@ -104,44 +99,43 @@ class _HomeState extends ConsumerState<Home> {
             // ignore: sized_box_for_whitespace
             Container(
                 //margin: const EdgeInsets.all(5),
-                height: 50,
+                height: 40,
                 child: const NewsCategoryRow()),
             const SizedBox(
               height: 20,
             ),
             const Carousel(),
-            FittedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Trending News',
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  const SizedBox(
-                    width: 50,
-                  ),
-                  GestureDetector(
-                      onTap: () {
-                        if (news.isNotEmpty) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => HeadLinesScreen(
-                                  title: 'Trending News', news: news)));
-                        }
-                      },
-                      child: Text(
-                        'view all',
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              color: Colors.blue,
-                            ),
-                      ))
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Trending News',
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                const Spacer(),
+                GestureDetector(
+                    onTap: () {
+                      if (news.isNotEmpty) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => HeadLinesScreen(
+                                title: 'Trending News', news: news)));
+                      }
+                    },
+                    child: Text(
+                      'view all',
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Colors.blue,
+                          ),
+                    ))
+              ],
             ),
             const SizedBox(
-                height: 600, width: double.infinity, child: NewsListView()),
+              height: 600,
+              width: double.infinity,
+              child: NewsListView(),
+            ),
           ],
         ),
       ),

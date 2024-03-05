@@ -20,35 +20,31 @@ class Carousel extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        FittedBox(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Top Headlines',
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-              const SizedBox(
-                width: 50,
-              ),
-              GestureDetector(
-                  onTap: () {
-                    if (headLines.isNotEmpty) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => HeadLinesScreen(
-                              title: 'Top HeadLines', news: headLines)));
-                    }
-                  },
-                  child: Text(
-                    'view all',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: Colors.blue,
-                        ),
-                  ))
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Top Headlines',
+              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            const Spacer(),
+            GestureDetector(
+                onTap: () {
+                  if (headLines.isNotEmpty) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => HeadLinesScreen(
+                            title: 'Top HeadLines', news: headLines)));
+                  }
+                },
+                child: Text(
+                  'view all',
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: Colors.blue,
+                      ),
+                ))
+          ],
         ),
         CarouselSlider.builder(
           itemCount: headLines.isEmpty ? data.length : 10,
@@ -106,7 +102,7 @@ class Carousel extends ConsumerWidget {
                               : headLines[index].title ??
                                   'something went wrong',
                           style:
-                              Theme.of(context).textTheme.titleLarge!.copyWith(
+                              Theme.of(context).textTheme.titleSmall!.copyWith(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),

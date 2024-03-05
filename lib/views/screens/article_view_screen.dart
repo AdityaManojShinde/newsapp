@@ -14,6 +14,7 @@ class ArticleViewScreen extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 300,
@@ -46,7 +47,7 @@ class ArticleViewScreen extends StatelessWidget {
                             article.title ?? 'something went wrong',
                             style: Theme.of(context)
                                 .textTheme
-                                .titleLarge!
+                                .titleMedium!
                                 .copyWith(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -69,7 +70,7 @@ class ArticleViewScreen extends StatelessWidget {
                 softWrap: true,
                 style: Theme.of(context)
                     .textTheme
-                    .titleLarge!
+                    .titleMedium!
                     .copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(
@@ -78,7 +79,7 @@ class ArticleViewScreen extends StatelessWidget {
               Text(
                 article.content ?? 'No content found.',
                 softWrap: true,
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(
                 height: 20,
@@ -86,7 +87,8 @@ class ArticleViewScreen extends StatelessWidget {
               Text(
                 'author : ${article.author ?? "unknown"}',
                 softWrap: true,
-                style: Theme.of(context).textTheme.headlineSmall,
+                textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ],
           )),

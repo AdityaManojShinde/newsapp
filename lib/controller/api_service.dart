@@ -38,7 +38,7 @@ class ApiService implements NewsApi {
     final dio = Dio();
     // ignore: unused_local_variable
     String url =
-        "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=$_apiKey";
+        "https://newsapi.org/v2/top-headlines?sources=techcrunch&pageSize=90&apiKey=$_apiKey";
 
     try {
       Response res;
